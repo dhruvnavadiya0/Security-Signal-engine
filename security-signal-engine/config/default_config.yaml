@@ -1,0 +1,66 @@
+# Security Signal Engine — Default Configuration
+# See PRD Section 5.1.3 for configuration reference.
+
+# Which scanners to run (MVP: semgrep only)
+scanners_enabled:
+  - semgrep
+  - url-scanner
+
+# Semgrep scanner configuration
+semgrep:
+  config: "p/owasp-top-ten"       # Primary ruleset (comprehensive OWASP coverage)
+  extra_configs:                    # Additional rulesets for thorough scanning
+    - "p/security-audit"
+    - "p/secrets"
+  timeout: 120                      # Max seconds before scanner is killed
+  extra_args: []                    # Additional CLI arguments passed to semgrep
+
+# URL scanner configuration
+url_scanner:
+  timeout: 15                       # HTTP request timeout in seconds
+  max_crawl_urls: 20                # Max URLs to crawl from the site
+  max_active_probe_urls: 10         # Max URLs to probe for active vulns
+  max_requests_per_scan: 200        # Max HTTP requests per scan
+  max_scan_seconds: 120             # Max total scan time in seconds (2 min)
+
+# LLM intelligence layer configuration
+llm:
+  provider: "ollama"
+  model: "llama3.1:8b"           # Ollama model name
+  base_url: "http://127.0.0.1:11434"        # Ollama API base URL (use 127.0.0.1 to avoid Docker port conflicts)
+  temperature: 0.2                          # Low temperature for factual output
+  max_tokens: 1200                          # Max tokens per finding
+  timeout: 30                               # Request timeout in seconds
+  enabled: true                             # Set to false to skip LLM enrichment
+
+# Dedicated local Ollama model for authorized website pentest analysis.
+pentest_model: "xploiter/pentester:latest"
+
+# Autonomous tool isolation. Enable only after building the local image.
+sandbox:
+  enabled: false
+  image: "security-signal-engine:latest"
+  network: "bridge"
+  memory: "2g"
+  cpus: "2"
+  timeout_seconds: 120
+
+# Deterministic risk policy
+scoring:
+  critical_threshold: 0.75
+  high_threshold: 0.55
+  medium_threshold: 0.40
+  min_category_by_vuln_type:
+    SQL_INJECTION: HIGH
+    RCE: CRITICAL
+    COMMAND_INJECTION: HIGH
+    SSRF: HIGH
+    INSECURE_DESERIALIZATION: HIGH
+    MISSING_AUTH: HIGH
+  consistency_lock_enabled: true
+  consistency_cache_path: ".sse/risk_category_cache.json"
+  allow_category_downgrade: false
+
+# Output settings
+output_format: "cli"      # Default output: cli (human-readable) or json
+fail_on: null              # Set to "critical", "high", "medium", or "low" for CI/CD fail threshold

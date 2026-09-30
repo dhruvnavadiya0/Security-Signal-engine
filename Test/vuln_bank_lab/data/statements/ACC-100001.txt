@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-100001
+Type: Savings
+Branch: Mumbai Main
+Opening balance: 894320.45
+This is fake training data only.

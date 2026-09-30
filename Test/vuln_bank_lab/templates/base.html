@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or 'Northstar Bank Lab' }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">Northstar Bank Lab</div>
+      <div class="subtle">Mock data. Local only. Intentionally vulnerable.</div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/login">Login</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/support">Support</a>
+      <a href="/reflect?message=welcome">Notice Board</a>
+      <a href="/sql-lab?id=1">SQL Lab</a>
+      <a href="/redirect?next=/">Redirect Test</a>
+      <a href="/fetch?url=http://127.0.0.1:5001/health">Fetch Gateway</a>
+      <a href="/download?file=ACC-100001.txt">Statements</a>
+      <a href="/admin/console?debug=1">Admin Console</a>
+    </nav>
+  </header>
+  <main class="shell">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <span>Local training lab</span>
+    <span>127.0.0.1 only</span>
+  </footer>
+</body>
+</html>

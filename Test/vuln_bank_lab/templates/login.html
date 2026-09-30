@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card narrow">
+  <h1>Secure Customer Login</h1>
+  <p class="subtle">This form is intentionally unsafe for testing purposes.</p>
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <form method="post" class="form">
+    <label>Email<input type="text" name="email" placeholder="aarav.mehta@example.test"></label>
+    <label>Password<input type="password" name="password" placeholder="Aarav123!"></label>
+    <button class="btn primary" type="submit">Login</button>
+  </form>
+  <p class="subtle">Try the credentials listed in the lab README.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,68 @@
+{
+  "benchmark_version": 1,
+  "case_count": 4,
+  "ground_truth_vulnerabilities": 4,
+  "clean_case_count": 2,
+  "metrics": [
+    {
+      "tool": "engine",
+      "true_positive": 3,
+      "false_positive": 0,
+      "false_negative": 1,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "mean_average_precision": 0.5,
+      "mean_reciprocal_rank": 0.5,
+      "precision_at_k": {
+        "1": 0.5,
+        "5": 0.15,
+        "10": 0.075
+      },
+      "deduplication_reduction": 0.2,
+      "deduplication_reduction_mean_case": 0.1667,
+      "duration_ms_mean": 700.0,
+      "duration_ms_p95": 900.0
+    },
+    {
+      "tool": "semgrep",
+      "true_positive": 4,
+      "false_positive": 0,
+      "false_negative": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "mean_average_precision": 0.5,
+      "mean_reciprocal_rank": 0.5,
+      "precision_at_k": {
+        "1": 0.5,
+        "5": 0.2,
+        "10": 0.1
+      },
+      "deduplication_reduction": 0.0,
+      "deduplication_reduction_mean_case": 0.0,
+      "duration_ms_mean": 475.0,
+      "duration_ms_p95": 600.0
+    },
+    {
+      "tool": "zap",
+      "true_positive": 1,
+      "false_positive": 0,
+      "false_negative": 3,
+      "precision": 1.0,
+      "recall": 0.25,
+      "f1": 0.4,
+      "mean_average_precision": 0.25,
+      "mean_reciprocal_rank": 0.25,
+      "precision_at_k": {
+        "1": 0.25,
+        "5": 0.05,
+        "10": 0.025
+      },
+      "deduplication_reduction": 0.0,
+      "deduplication_reduction_mean_case": 0.0,
+      "duration_ms_mean": 1650.0,
+      "duration_ms_p95": 800.0
+    }
+  ]
+}

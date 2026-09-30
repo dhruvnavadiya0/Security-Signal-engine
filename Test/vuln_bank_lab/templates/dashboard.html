@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Customer overview</p>
+      <h1>{{ user.name if user else 'Guest' }}</h1>
+      <p class="subtle">User ID lookup is intentionally weak. Query strings can switch accounts.</p>
+    </div>
+    <div class="account-box">
+      <span>Accounts</span>
+      <strong>{{ stats.account_total }}</strong>
+      <span>Balance</span>
+      <strong>₹{{ '%.2f'|format(stats.balance_total) }}</strong>
+    </div>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="card">
+    <h2>Accounts</h2>
+    <table>
+      <thead><tr><th>No.</th><th>Type</th><th>Branch</th><th>Balance</th><th></th></tr></thead>
+      <tbody>
+      {% for account in accounts %}
+        <tr>
+          <td>{{ account.account_no }}</td>
+          <td>{{ account.account_type }}</td>
+          <td>{{ account.branch }}</td>
+          <td>₹{{ '%.2f'|format(account.balance) }}</td>
+          <td><a href="/account/{{ account.id }}">Open</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Quick Transfer</h2>
+    <form method="post" action="/transfer" class="form">
+      <label>From account<input name="from_account" value="1"></label>
+      <label>To account<input name="to_account" value="3"></label>
+      <label>Amount<input name="amount" value="1000"></label>
+      <label>Note<input name="note" value="Monthly settlement"></label>
+      <button class="btn primary" type="submit">Execute Transfer</button>
+    </form>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="card">
+    <h2>Recent activity</h2>
+    <table>
+      <thead><tr><th>Account</th><th>Counterparty</th><th>Amount</th><th>Note</th></tr></thead>
+      <tbody>
+      {% for tx in recent %}
+        <tr>
+          <td>{{ tx.account_no }}</td>
+          <td>{{ tx.counterparty }}</td>
+          <td>₹{{ '%.2f'|format(tx.amount) }}</td>
+          <td>{{ tx.note|safe }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Search ledger</h2>
+    <form method="get" action="/dashboard" class="form inline">
+      <input type="hidden" name="user_id" value="{{ user.id if user else 1 }}">
+      <label>Query<input name="q" value="{{ search_query|safe }}" placeholder="salary OR 1=1"></label>
+      <button class="btn secondary" type="submit">Search</button>
+    </form>
+    {% if search_query %}
+      <div class="alert">Results for <strong>{{ search_query|safe }}</strong></div>
+      <table>
+        <thead><tr><th>Counterparty</th><th>Amount</th><th>Note</th></tr></thead>
+        <tbody>
+        {% for row in search_results %}
+          <tr>
+            <td>{{ row.counterparty|safe }}</td>
+            <td>₹{{ '%.2f'|format(row.amount) }}</td>
+            <td>{{ row.note|safe }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+</section>
+
+<section class="card">
+  <h2>Support tickets</h2>
+  <table>
+    <thead><tr><th>Subject</th><th>Body</th><th>Created</th></tr></thead>
+    <tbody>
+    {% for ticket in tickets %}
+      <tr>
+        <td>{{ ticket.subject }}</td>
+        <td>{{ ticket.body|safe }}</td>
+        <td>{{ ticket.created_at }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

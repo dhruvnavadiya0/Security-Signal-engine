@@ -1,0 +1,147 @@
+{
+  "profile_tested": "recall",
+  "total_cases": 1230,
+  "total_vulnerabilities": 452,
+  "true_positives": 289,
+  "false_positives": 268,
+  "false_negatives": 163,
+  "precision": 0.5189,
+  "recall": 0.6394,
+  "f1_score": 0.5728,
+  "pr_auc": 0.3535,
+  "optimal_operating_points": {
+    "max_f1": {
+      "threshold": 0.0,
+      "precision": 0.5189,
+      "recall": 0.6394,
+      "f1": 0.5728
+    },
+    "precision_priority": {
+      "threshold": 0.0,
+      "true_positive": 289,
+      "false_positive": 268,
+      "false_negative": 163,
+      "total_predicted": 557,
+      "precision": 0.5189,
+      "recall": 0.6394,
+      "f1": 0.5728
+    },
+    "recall_priority": {
+      "threshold": 0.0,
+      "true_positive": 289,
+      "false_positive": 268,
+      "false_negative": 163,
+      "total_predicted": 557,
+      "precision": 0.5189,
+      "recall": 0.6394,
+      "f1": 0.5728
+    }
+  },
+  "top_performing_rules": [
+    {
+      "rule_id": "fallback-weak_randomness",
+      "vuln_type": "WEAK_RANDOMNESS",
+      "cwe_id": "CWE-330",
+      "true_positive": 80,
+      "false_positive": 0,
+      "total": 80,
+      "precision": 1.0,
+      "fp_share": 0.0
+    },
+    {
+      "rule_id": "fallback-insecure_crypto",
+      "vuln_type": "INSECURE_CRYPTO",
+      "cwe_id": "CWE-327",
+      "true_positive": 37,
+      "false_positive": 0,
+      "total": 37,
+      "precision": 1.0,
+      "fp_share": 0.0
+    },
+    {
+      "rule_id": "fallback-ldap_injection",
+      "vuln_type": "LDAP_INJECTION",
+      "cwe_id": "CWE-90",
+      "true_positive": 16,
+      "false_positive": 13,
+      "total": 29,
+      "precision": 0.5517,
+      "fp_share": 0.0363
+    },
+    {
+      "rule_id": "fallback-xxe",
+      "vuln_type": "XXE",
+      "cwe_id": "CWE-611",
+      "true_positive": 8,
+      "false_positive": 7,
+      "total": 15,
+      "precision": 0.5333,
+      "fp_share": 0.0196
+    },
+    {
+      "rule_id": "fallback-trust_boundary_violation",
+      "vuln_type": "TRUST_BOUNDARY_VIOLATION",
+      "cwe_id": "CWE-501",
+      "true_positive": 18,
+      "false_positive": 19,
+      "total": 37,
+      "precision": 0.4865,
+      "fp_share": 0.0531
+    },
+    {
+      "rule_id": "fallback-rce",
+      "vuln_type": "RCE",
+      "cwe_id": "CWE-94",
+      "true_positive": 45,
+      "false_positive": 52,
+      "total": 97,
+      "precision": 0.4639,
+      "fp_share": 0.1453
+    },
+    {
+      "rule_id": "fallback-open_redirect",
+      "vuln_type": "OPEN_REDIRECT",
+      "cwe_id": "CWE-601",
+      "true_positive": 13,
+      "false_positive": 21,
+      "total": 34,
+      "precision": 0.3824,
+      "fp_share": 0.0587
+    },
+    {
+      "rule_id": "fallback-path_traversal",
+      "vuln_type": "PATH_TRAVERSAL",
+      "cwe_id": "CWE-22",
+      "true_positive": 55,
+      "false_positive": 100,
+      "total": 155,
+      "precision": 0.3548,
+      "fp_share": 0.2793
+    },
+    {
+      "rule_id": "fallback-sql_injection",
+      "vuln_type": "SQL_INJECTION",
+      "cwe_id": "CWE-89",
+      "true_positive": 5,
+      "false_positive": 11,
+      "total": 16,
+      "precision": 0.3125,
+      "fp_share": 0.0307
+    },
+    {
+      "rule_id": "fallback-xpath_injection",
+      "vuln_type": "XPATH_INJECTION",
+      "cwe_id": "CWE-643",
+      "true_positive": 51,
+      "false_positive": 135,
+      "total": 186,
+      "precision": 0.2742,
+      "fp_share": 0.3771
+    }
+  ],
+  "artifacts": {
+    "engine_report": "benchmarks\\runs\\tuning\\engine-recall.json",
+    "observed": "benchmarks\\runs\\tuning\\observed-recall.json",
+    "evaluation": "benchmarks\\runs\\tuning\\evaluation-recall.json"
+  }
+}

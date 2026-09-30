@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Security Signal Engine",
+          "informationUri": "https://github.com/",
+          "rules": [
+            {
+              "id": "CWE-295",
+              "name": "Insecure Crypto in myaccount.somaiya.edu:0",
+              "shortDescription": {
+                "text": "Insecure Crypto in myaccount.somaiya.edu:0"
+              },
+              "fullDescription": {
+                "text": "SSL certificate verification failed: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010). Users may see browser warnings, and connections may be vulnerable to MITM attacks."
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "cwe": "CWE-295"
+              }
+            },
+            {
+              "id": "dangerous-method-trace",
+              "name": "Missing Auth in myaccount.somaiya.edu:0",
+              "shortDescription": {
+                "text": "Missing Auth in myaccount.somaiya.edu:0"
+              },
+              "fullDescription": {
+                "text": "Dangerous HTTP method 'TRACE' is enabled. This could allow attackers to modify or delete resources on the server."
+              },
+              "properties": {
+                "security-severity": "8.0",
+                "cwe": "CWE-749"
+              }
+            },
+            {
+              "id": "header-missing-content-security-policy",
+              "name": "Missing Security Header in myaccount.somaiya.edu:0",
+              "shortDescription": {
+                "text": "Missing Security Header in myaccount.somaiya.edu:0"
+              },
+              "fullDescription": {
+                "text": "Missing Content-Security-Policy (CSP) header. Without CSP, the site is more vulnerable to Cross-Site Scripting (XSS) and data injection attacks."
+              },
+              "properties": {
+                "security-severity": "2.0",
+                "cwe": "CWE-693"
+              }
+            },
+            {
+              "id": "info-server-version",
+              "name": "Information Disclosure in myaccount.somaiya.edu:0",
+              "shortDescription": {
+                "text": "Information Disclosure in myaccount.somaiya.edu:0"
+              },
+              "fullDescription": {
+                "text": "Server header discloses version information: 'Microsoft-IIS/10.0'. Attackers can use this to find known vulnerabilities for this version."
+              },
+              "properties": {
+                "security-severity": "2.0",
+                "cwe": "CWE-200"
+              }
+            }
+          ]
+        }
+      },
+      "automationDetails": {
+        "id": "sse/ba67a8e2-8be9-42c3-8afb-76a31b5e139c"
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-295",
+          "level": "warning",
+          "message": {
+            "text": "The application uses weak or deprecated cryptographic algorithms that can be broken by modern attackers. Found in myaccount.somaiya.edu. SSL certificate verification failed: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl."
+          },
+          "kind": "fail",
+          "properties": {
+            "sse": {
+              "finding_id": "049347b0-19af-43c6-90a8-8bebf5e2b5ef",
+              "severity": "HIGH",
+              "risk_category": "MEDIUM",
+              "risk_score": 0.4158,
+              "confidence": 0.95,
+              "sources": [
+                "url-scanner"
+              ],
+              "synthetic_location": true
+            }
+          },
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "name": "https://myaccount.somaiya.edu"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "dangerous-method-trace",
+          "level": "error",
+          "message": {
+            "text": "This endpoint or function lacks authentication, allowing unauthenticated users to access protected resources. Found in myaccount.somaiya.edu. Dangerous HTTP method 'TRACE' is enabled."
+          },
+          "kind": "fail",
+          "properties": {
+            "sse": {
+              "finding_id": "7f3f9f17-974e-4a94-aada-564ee933b0ad",
+              "severity": "MEDIUM",
+              "risk_category": "HIGH",
+              "risk_score": 0.361,
+              "confidence": 0.75,
+              "sources": [
+                "url-scanner"
+              ],
+              "synthetic_location": true
+            }
+          },
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "name": "https://myaccount.somaiya.edu"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "header-missing-content-security-policy",
+          "level": "note",
+          "message": {
+            "text": "The server response is missing recommended HTTP security headers that instruct browsers to enable built-in protections. Found in myaccount.somaiya.edu. Missing Content-Security-Policy (CSP) header."
+          },
+          "kind": "fail",
+          "properties": {
+            "sse": {
+              "finding_id": "ead7fb19-40a6-43e5-9502-75f91ac9c62a",
+              "severity": "MEDIUM",
+              "risk_category": "LOW",
+              "risk_score": 0.3136,
+              "confidence": 0.9,
+              "sources": [
+                "url-scanner"
+              ],
+              "synthetic_location": true
+            }
+          },
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "name": "https://myaccount.somaiya.edu"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "info-server-version",
+          "level": "note",
+          "message": {
+            "text": "The server is exposing sensitive information that could help attackers plan targeted attacks. Found in myaccount.somaiya.edu. Server header discloses version information: 'Microsoft-IIS/10."
+          },
+          "kind": "fail",
+          "properties": {
+            "sse": {
+              "finding_id": "06ad8670-d2ac-4dac-a0cf-4e0070dd99f9",
+              "severity": "LOW",
+              "risk_category": "LOW",
+              "risk_score": 0.194,
+              "confidence": 0.85,
+              "sources": [
+                "url-scanner"
+              ],
+              "synthetic_location": true
+            }
+          },
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "name": "https://myaccount.somaiya.edu"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

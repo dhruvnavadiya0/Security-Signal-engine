@@ -1,0 +1,143 @@
+{
+  "profile_tested": "balanced",
+  "total_cases": 1230,
+  "total_vulnerabilities": 452,
+  "true_positives": 347,
+  "false_positives": 163,
+  "false_negatives": 105,
+  "precision": 0.6804,
+  "recall": 0.7677,
+  "f1_score": 0.7214,
+  "pr_auc": 0.5211,
+  "optimal_operating_points": {
+    "max_f1": {
+      "threshold": 0.0,
+      "precision": 0.6804,
+      "recall": 0.7677,
+      "f1": 0.7214
+    },
+    "precision_priority": {
+      "threshold": 0.0,
+      "true_positive": 347,
+      "false_positive": 163,
+      "false_negative": 105,
+      "total_predicted": 510,
+      "precision": 0.6804,
+      "recall": 0.7677,
+      "f1": 0.7214
+    },
+    "recall_priority": {
+      "threshold": 0.35,
+      "precision": 0.6901,
+      "recall": 0.7389,
+      "f1": 0.7137
+    }
+  },
+  "top_performing_rules": [
+    {
+      "rule_id": "fallback-weak_randomness",
+      "vuln_type": "WEAK_RANDOMNESS",
+      "cwe_id": "CWE-330",
+      "true_positive": 80,
+      "false_positive": 0,
+      "total": 80,
+      "precision": 1.0,
+      "fp_share": 0.0
+    },
+    {
+      "rule_id": "fallback-insecure_crypto",
+      "vuln_type": "INSECURE_CRYPTO",
+      "cwe_id": "CWE-327",
+      "true_positive": 71,
+      "false_positive": 0,
+      "total": 71,
+      "precision": 1.0,
+      "fp_share": 0.0
+    },
+    {
+      "rule_id": "fallback-ldap_injection",
+      "vuln_type": "LDAP_INJECTION",
+      "cwe_id": "CWE-90",
+      "true_positive": 16,
+      "false_positive": 5,
+      "total": 21,
+      "precision": 0.7619,
+      "fp_share": 0.0251
+    },
+    {
+      "rule_id": "fallback-trust_boundary_violation",
+      "vuln_type": "TRUST_BOUNDARY_VIOLATION",
+      "cwe_id": "CWE-501",
+      "true_positive": 15,
+      "false_positive": 9,
+      "total": 24,
+      "precision": 0.625,
+      "fp_share": 0.0452
+    },
+    {
+      "rule_id": "fallback-xss",
+      "vuln_type": "XSS",
+      "cwe_id": "CWE-79",
+      "true_positive": 28,
+      "false_positive": 18,
+      "total": 46,
+      "precision": 0.6087,
+      "fp_share": 0.0905
+    },
+    {
+      "rule_id": "fallback-rce",
+      "vuln_type": "RCE",
+      "cwe_id": "CWE-94",
+      "true_positive": 38,
+      "false_positive": 27,
+      "total": 65,
+      "precision": 0.5846,
+      "fp_share": 0.1357
+    },
+    {
+      "rule_id": "fallback-xxe",
+      "vuln_type": "XXE",
+      "cwe_id": "CWE-611",
+      "true_positive": 8,
+      "false_positive": 7,
+      "total": 15,
+      "precision": 0.5333,
+      "fp_share": 0.0352
+    },
+    {
+      "rule_id": "fallback-path_traversal",
+      "vuln_type": "PATH_TRAVERSAL",
+      "cwe_id": "CWE-22",
+      "true_positive": 62,
+      "false_positive": 57,
+      "total": 119,
+      "precision": 0.521,
+      "fp_share": 0.2864
+    },
+    {
+      "rule_id": "fallback-open_redirect",
+      "vuln_type": "OPEN_REDIRECT",
+      "cwe_id": "CWE-601",
+      "true_positive": 13,
+      "false_positive": 13,
+      "total": 26,
+      "precision": 0.5,
+      "fp_share": 0.0653
+    },
+    {
+      "rule_id": "fallback-xpath_injection",
+      "vuln_type": "XPATH_INJECTION",
+      "cwe_id": "CWE-643",
+      "true_positive": 49,
+      "false_positive": 56,
+      "total": 105,
+      "precision": 0.4667,
+      "fp_share": 0.2814
+    }
+  ],
+  "artifacts": {
+    "engine_report": "benchmarks\\runs\\tuning\\engine-balanced.json",
+    "observed": "benchmarks\\runs\\tuning\\observed-balanced.json",
+    "evaluation": "benchmarks\\runs\\tuning\\evaluation-balanced.json"
+  }
+}

@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-100301
+Type: Savings
+Branch: Thane West
+Opening balance: 78210.77
+This is fake training data only.

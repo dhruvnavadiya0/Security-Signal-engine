@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  # Security Signal Engine API
+  sse-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../:/app
+      - scan-targets:/targets
+    environment:
+      - SSE_LLM__BASE_URL=http://ollama:11434
+      - SSE_LLM__ENABLED=true
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  # Ollama LLM Runtime (optional — only needed if you don't have Ollama locally)
+  # If you have Ollama installed locally, stop this container to avoid port conflicts.
+  ollama:
+    image: ollama/ollama:latest
+    # ports:
+    #   - "11434:11434"  # DISABLED: conflicts with local Ollama installation
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    # After starting the stack, you must manually pull the model:
+    # docker compose exec ollama ollama pull llama3.1:8b
+
+volumes:
+  ollama-data:
+  scan-targets:

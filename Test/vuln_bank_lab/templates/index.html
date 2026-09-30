@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero card">
+  <div>
+    <p class="eyebrow">Banking operations platform</p>
+    <h1>Northstar Bank Lab</h1>
+    <p class="lede">A mock finance portal with seeded customer data, analytics, statements, support cases, and intentionally weak security controls for scanner testing.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="/login">Open Dashboard</a>
+      <a class="btn secondary" href="/support">View Support Desk</a>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><span>Customers</span><strong>{{ stats.user_count }}</strong></div>
+    <div class="stat"><span>Accounts</span><strong>{{ stats.account_count }}</strong></div>
+    <div class="stat"><span>Total Assets</span><strong>₹{{ '%.2f'|format(stats.total_assets) }}</strong></div>
+    <div class="stat"><span>Open Tickets</span><strong>{{ stats.ticket_count }}</strong></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Lab focus</h2>
+  <div class="chip-row">
+    <span class="chip">SQLi</span>
+    <span class="chip">XSS</span>
+    <span class="chip">SSRF</span>
+    <span class="chip">IDOR</span>
+    <span class="chip">Path Traversal</span>
+    <span class="chip">XXE</span>
+    <span class="chip">Deserialization</span>
+    <span class="chip">Command Injection</span>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Runtime Endpoints</h2>
+  <p class="subtle">These links intentionally expose test surfaces for DAST crawling.</p>
+  <div class="chip-row">
+    <a class="chip" href="/api/profile/1">/api/profile/1</a>
+    <a class="chip" href="/api/invoice/1">/api/invoice/1</a>
+    <a class="chip" href="/api/import-xml">/api/import-xml</a>
+    <a class="chip" href="/api/restore-session">/api/restore-session</a>
+    <a class="chip" href="/sitemap.xml">/sitemap.xml</a>
+    <a class="chip" href="/robots.txt">/robots.txt</a>
+  </div>
+</section>
+{% endblock %}

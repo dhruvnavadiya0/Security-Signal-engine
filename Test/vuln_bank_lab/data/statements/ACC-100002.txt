@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-100002
+Type: Demat
+Branch: Mumbai Main
+Opening balance: 102345.10
+This is fake training data only.

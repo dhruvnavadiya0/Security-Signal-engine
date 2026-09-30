@@ -1,0 +1,25 @@
+scanners_enabled:
+  - semgrep
+
+# Balanced Tuning Profile
+# Target: Max F1 Score (High precision >= 0.80 and high recall, suitable for daily development & scans)
+semgrep:
+  config: "p/owasp-top-ten"
+  extra_configs:
+    - "p/python"
+    - "p/security-audit"
+    - "config/custom_python_security.yml"
+  timeout: 120
+  rule_allowlist: []
+
+scoring:
+  critical_threshold: 0.75
+  high_threshold: 0.55
+  medium_threshold: 0.40
+
+llm:
+  enabled: false
+
+fp_filter:
+  enabled: true
+  similarity_threshold: 0.80

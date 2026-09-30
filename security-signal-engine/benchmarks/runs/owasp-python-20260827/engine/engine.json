@@ -1,0 +1,143 @@
+{
+  "scan_id": "c6ced047-b05e-4b0a-8ca2-6613c4254786",
+  "timestamp": "2026-08-26T19:41:03.210701+00:00",
+  "target": "http://127.0.0.1:5000",
+  "summary": {
+    "total_raw": 9,
+    "after_dedup": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 2
+  },
+  "findings": [
+    {
+      "id": "15014d04-3821-4216-b66b-6c3344f3ae9b",
+      "title": "Insecure Transport in 127.0.0.1:5000:0",
+      "file": "http://127.0.0.1:5000",
+      "line_start": 0,
+      "line_end": null,
+      "severity": "HIGH",
+      "vuln_type": "INSECURE_TRANSPORT",
+      "description": "Site is served over plain HTTP. All traffic including credentials and session tokens is transmitted in cleartext.",
+      "rule_id": null,
+      "confidence": 1.0,
+      "cwe_id": "CWE-319",
+      "cvss_score": null,
+      "code_snippet": null,
+      "sources": [
+        "url-scanner"
+      ],
+      "risk_score": 0.57,
+      "risk_category": "HIGH",
+      "category_source": "score",
+      "category_reason": "score-threshold",
+      "llm_explanation": "The site is served over unencrypted HTTP, exposing all traffic to interception. Found in 127.0.0.1:5000. Site is served over plain HTTP.",
+      "fix_suggestion": "Enable HTTPS with a valid TLS certificate (e.g. via Let's Encrypt). Redirect all HTTP traffic to HTTPS. Add the HSTS header.",
+      "business_impact": "All data transmitted to user session data — including passwords and session tokens — can be intercepted on the network.",
+      "attack_path": "UNKNOWN: deterministic fallback has no runtime proof.",
+      "next_test": "Run one authorized, read-only validation test and stop if it changes state or exposes real data.",
+      "raw": {
+        "url": "http://127.0.0.1:5000",
+        "check": "insecure_transport"
+      }
+    },
+    {
+      "id": "230110eb-7e11-4b43-8072-bca9eaa0b22c",
+      "title": "Clickjacking in 127.0.0.1:5000:0",
+      "file": "http://127.0.0.1:5000",
+      "line_start": 0,
+      "line_end": null,
+      "severity": "MEDIUM",
+      "vuln_type": "CLICKJACKING",
+      "description": "Missing X-Frame-Options header. The site may be vulnerable to clickjacking attacks where it is embedded in a malicious iframe.",
+      "rule_id": "header-missing-x-frame-options",
+      "confidence": 0.85,
+      "cwe_id": "CWE-1021",
+      "cvss_score": null,
+      "code_snippet": "Response headers: X-Frame-Options = (not set)",
+      "sources": [
+        "url-scanner"
+      ],
+      "risk_score": 0.3589,
+      "risk_category": "LOW",
+      "category_source": "score",
+      "category_reason": "score-threshold",
+      "llm_explanation": "The page can be embedded in an iframe, allowing attackers to overlay invisible controls and trick users into clicking. Found in 127.0.0.1:5000. Missing X-Frame-Options header.",
+      "fix_suggestion": "Add X-Frame-Options: DENY header or use Content-Security-Policy with frame-ancestors 'self'.",
+      "business_impact": "Users could be tricked into performing unintended actions on your application such as changing settings or transferring funds.",
+      "attack_path": "UNKNOWN: deterministic fallback has no runtime proof.",
+      "next_test": "Run one authorized, read-only validation test and stop if it changes state or exposes real data.",
+      "raw": {
+        "url": "http://127.0.0.1:5000",
+        "header": "X-Frame-Options",
+        "check": "missing_header"
+      }
+    },
+    {
+      "id": "97b77324-c915-46f1-8417-9aeb24835268",
+      "title": "Reconnaissance Surface in 127.0.0.1:5000:0",
+      "file": "http://127.0.0.1:5000",
+      "line_start": 0,
+      "line_end": null,
+      "severity": "LOW",
+      "vuln_type": "RECONNAISSANCE_SURFACE",
+      "description": "Passive reconnaissance inventory of the reachable page. Use the listed endpoints, forms, scripts, and disclosed technologies to prioritize authorized follow-up testing.",
+      "rule_id": "recon-page-surface",
+      "confidence": 1.0,
+      "cwe_id": "CWE-200",
+      "cvss_score": null,
+      "code_snippet": "Title: OWASP Benchmark\nStatus: 200\nContent-Type: text/html; charset=utf-8\nTechnologies disclosed: Werkzeug/3.1.8 Python/3.12.10\nSame-page links: 14\nForms: 0\nScripts: 1",
+      "sources": [
+        "url-scanner"
+      ],
+      "risk_score": 0.35,
+      "risk_category": "LOW",
+      "category_source": "score",
+      "category_reason": "score-threshold",
+      "llm_explanation": "A security vulnerability was detected in your code. Found in 127.0.0.1:5000. Passive reconnaissance inventory of the reachable page.",
+      "fix_suggestion": "Review the flagged code and apply security best practices. Consult the OWASP guidelines for the relevant vulnerability type.",
+      "business_impact": "This vulnerability could be exploited to compromise application security.",
+      "attack_path": "UNKNOWN: deterministic fallback has no runtime proof.",
+      "next_test": "Run one authorized, read-only validation test and stop if it changes state or exposes real data.",
+      "raw": {
+        "url": "http://127.0.0.1:5000",
+        "surface": {
+          "title": "OWASP Benchmark",
+          "links": [
+            "http://127.0.0.1:5000/cmdi-Index.html",
+            "http://127.0.0.1:5000/codeinj-Index.html",
+            "http://127.0.0.1:5000/deserialization-Index.html",
+            "http://127.0.0.1:5000/hash-Index.html",
+            "http://127.0.0.1:5000/ldapi-Index.html",
+            "http://127.0.0.1:5000/pathtraver-Index.html",
+            "http://127.0.0.1:5000/redirect-Index.html",
+            "http://127.0.0.1:5000/securecookie-Index.html",
+            "http://127.0.0.1:5000/sqli-Index.html",
+            "http://127.0.0.1:5000/trustbound-Index.html",
+            "http://127.0.0.1:5000/weakrand-Index.html",
+            "http://127.0.0.1:5000/xpathi-Index.html",
+            "http://127.0.0.1:5000/xss-Index.html",
+            "http://127.0.0.1:5000/xxe-Index.html"
+          ],
+          "scripts": [
+            "http://127.0.0.1:5000/benchmark/js/jquery.min.js"
+          ],
+          "forms": []
+        },
+        "technologies": [
+          "Werkzeug/3.1.8 Python/3.12.10"
+        ]
+      }
+    }
+  ],
+  "executive_summary": "Security scan of 'http://127.0.0.1:5000' identified 9 raw findings, reduced to 3 unique issues after deduplication. 🟠 1 HIGH-severity issue(s) should be prioritized for remediation within the next 48 hours. 2 LOW-priority issue(s) have been logged for backlog tracking.",
+  "scan_duration_ms": 12412,
+  "report_path": "reports\\scan_c6ced047-b05e-4b0a-8ca2-6613c4254786_20260827_011103.pdf",
+  "scanners_used": [
+    "url-scanner"
+  ],
+  "scanner_versions": {
+    "url-scanner": "builtin-1.0"
+  }
+}

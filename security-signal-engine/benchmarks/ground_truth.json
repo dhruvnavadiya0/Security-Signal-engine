@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "description": "Small deterministic corpus for smoke testing. Replace or extend with verified exploit evidence before publishing accuracy claims.",
+  "cases": [
+    {
+      "id": "fixture-vulnerable-web",
+      "target": "test_vulnerable_app",
+      "vulnerabilities": [
+        {"benchmark_id": "fixture-vulnerable-web:sqli", "vuln_type": "SQL_INJECTION", "location": "app.py:42", "cwe_id": "CWE-89", "severity": "HIGH"},
+        {"benchmark_id": "fixture-vulnerable-web:xss", "vuln_type": "XSS", "location": "app.py:58", "cwe_id": "CWE-79", "severity": "HIGH"}
+      ]
+    },
+    {
+      "id": "fixture-secrets-and-command",
+      "target": "test_vulnerable_app/files",
+      "vulnerabilities": [
+        {"benchmark_id": "fixture-secrets-and-command:secret", "vuln_type": "HARDCODED_SECRET", "location": "config.py:8", "cwe_id": "CWE-798", "severity": "MEDIUM"},
+        {"benchmark_id": "fixture-secrets-and-command:command", "vuln_type": "RCE", "location": "commands.py:19", "cwe_id": "CWE-78", "severity": "CRITICAL"}
+      ]
+    },
+    {
+      "id": "fixture-clean-python",
+      "target": "tests/fixtures/clean_app",
+      "vulnerabilities": []
+    },
+    {
+      "id": "fixture-secure-headers",
+      "target": "tests/fixtures/secure_headers",
+      "vulnerabilities": []
+    }
+  ]
+}

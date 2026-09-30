@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-100201
+Type: Salary
+Branch: Navi Mumbai
+Opening balance: 231980.12
+This is fake training data only.

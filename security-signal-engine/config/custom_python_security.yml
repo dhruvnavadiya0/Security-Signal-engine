@@ -1,0 +1,143 @@
+rules:
+  - id: sse.python.flask.request-to-html
+    languages: [python]
+    message: User-controlled request data is interpolated into an HTML response without escaping.
+    severity: ERROR
+    mode: taint
+    metadata:
+      cwe: [CWE-79]
+      category: security
+      confidence: HIGH
+      vuln_type: XSS
+    pattern-sources:
+      - pattern: request.form.get(...)
+      - pattern: request.form.getlist(...)
+      - pattern: request.args.get(...)
+      - pattern: request.values.get(...)
+      - pattern: request.cookies.get(...)
+    pattern-sinks:
+      - patterns:
+          - pattern: $OUT += $HTML
+          - metavariable-type:
+              metavariable: $HTML
+              type: str
+          - metavariable-pattern:
+              metavariable: $HTML
+              pattern: f"..."
+      - pattern: return $HTML
+        focus-metavariable: $HTML
+      - pattern: render_template_string(...)
+    options:
+      symbolic_propagation: true
+
+  - id: sse.python.crypto.weak-randomness
+    languages: [python]
+    message: Insecure pseudo-random number generator used for sensitive security context (cookie, session, or token).
+    severity: ERROR
+    metadata:
+      cwe: [CWE-330, CWE-338]
+      category: security
+      confidence: HIGH
+      vuln_type: WEAK_RANDOMNESS
+    patterns:
+      - pattern-either:
+          - pattern: random.normalvariate(...)
+          - pattern: random.random()
+          - pattern: random.randint(...)
+          - pattern: random.choice(...)
+          - pattern: random.randrange(...)
+          - pattern: random.getrandbits(...)
+          - pattern: random.sample(...)
+          - pattern: random.uniform(...)
+
+  - id: sse.python.injection.xpath
+    languages: [python]
+    message: XPath query constructed dynamically with user input, leading to potential XPath injection.
+    severity: ERROR
+    metadata:
+      cwe: [CWE-643]
+      category: security
+      confidence: HIGH
+      vuln_type: XPATH_INJECTION
+    patterns:
+      - pattern-either:
+          - pattern: lxml.etree.XPath(f"...")
+          - pattern: lxml.etree.XPath($QUERY)
+          - pattern: elementpath.select($ROOT, f"...")
+          - pattern: elementpath.select($ROOT, $QUERY)
+          - pattern: $ROOT.xpath(f"...")
+          - pattern: $ROOT.xpath($QUERY)
+
+  - id: sse.python.xml.insecure-xxe
+    languages: [python]
+    message: XML parser configured to resolve external entities or DTDs, creating an XXE vulnerability.
+    severity: ERROR
+    metadata:
+      cwe: [CWE-611]
+      category: security
+      confidence: HIGH
+      vuln_type: XXE
+    patterns:
+      - pattern-either:
+          - pattern: $PARSER.setFeature(xml.sax.handler.feature_external_ges, True)
+          - pattern: $PARSER.setFeature(xml.sax.handler.feature_external_pes, True)
+          - pattern: lxml.etree.XMLParser(..., resolve_entities=True, ...)
+          - pattern: lxml.etree.XMLParser(..., load_dtd=True, ...)
+
+  - id: sse.python.injection.path-traversal-custom
+    languages: [python]
+    message: File path accessed dynamically without strict directory traversal protections.
+    severity: ERROR
+    metadata:
+      cwe: [CWE-22]
+      category: security
+      confidence: HIGH
+      vuln_type: PATH_TRAVERSAL
+    patterns:
+      - pattern-either:
+          - pattern: open(f"{helpers.utils.RES_DIR}/{$BAR}", ...)
+          - pattern: send_file(f".../{$BAR}", ...)
+          - pattern: Path(f".../{$BAR}")
+
+  - id: sse.python.injection.ldap
+    languages: [python]
+    message: Dynamic string concatenation used inside LDAP search query without proper filter escaping.
+    severity: ERROR
+    metadata:
+      cwe: [CWE-90]
+      category: security
+      confidence: HIGH
+      vuln_type: LDAP_INJECTION
+    patterns:
+      - pattern-either:
+          - pattern: $CONN.search(..., f"...", ...)
+          - pattern: ldap.filter.filter_format(f"...", ...)
+          - pattern: $CONN.search_s(..., f"...", ...)
+
+  - id: sse.python.security.trust-boundary
+    languages: [python]
+    message: Untrusted user input stored directly in session/trust boundary state.
+    severity: WARNING
+    metadata:
+      cwe: [CWE-501]
+      category: security
+      confidence: HIGH
+      vuln_type: TRUST_BOUNDARY_VIOLATION
+    patterns:
+      - pattern-either:
+          - pattern: mysession[$KEY] = $VALUE
+          - pattern: session[$KEY] = $VALUE
+
+  - id: sse.python.security.insecure-cookie-attribute
+    languages: [python]
+    message: Cookie set with missing security attributes (secure, httponly, or samesite).
+    severity: WARNING
+    metadata:
+      cwe: [CWE-614, CWE-1004]
+      category: security
+      confidence: HIGH
+      vuln_type: INSECURE_COOKIE
+    patterns:
+      - pattern-either:
+          - pattern: $RESP.set_cookie(..., secure=False, ...)
+          - pattern: $RESP.set_cookie(..., httponly=False, ...)

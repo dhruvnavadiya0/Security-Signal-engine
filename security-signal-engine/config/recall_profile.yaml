@@ -1,0 +1,26 @@
+scanners_enabled:
+  - semgrep
+  - url-scanner
+
+# Recall-Optimized Profile
+# Target: Max Recall > 0.85 (Deep security auditing and penetration testing)
+semgrep:
+  config: "p/owasp-top-ten"
+  extra_configs:
+    - "p/security-audit"
+    - "p/secrets"
+    - "p/python"
+    - "config/custom_python_security.yml"
+  timeout: 180
+  rule_allowlist: []
+
+scoring:
+  critical_threshold: 0.70
+  high_threshold: 0.50
+  medium_threshold: 0.35
+
+llm:
+  enabled: true
+
+fp_filter:
+  enabled: false

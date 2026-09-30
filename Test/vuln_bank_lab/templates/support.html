@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="grid-2">
+  <div class="card">
+    <h1>Support Desk</h1>
+    {% if message %}<div class="alert">{{ message }}</div>{% endif %}
+    <form method="post" class="form">
+      <label>User ID<input name="user_id" value="1"></label>
+      <label>Subject<input name="subject" value="General query"></label>
+      <label>Body<textarea name="body" rows="5">Need help with my account</textarea></label>
+      <button class="btn primary" type="submit">Submit Ticket</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Recent Tickets</h2>
+    <table>
+      <thead><tr><th>User</th><th>Subject</th><th>Body</th></tr></thead>
+      <tbody>
+      {% for ticket in tickets %}
+        <tr>
+          <td>{{ ticket.name }}</td>
+          <td>{{ ticket.subject }}</td>
+          <td>{{ ticket.body|safe }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

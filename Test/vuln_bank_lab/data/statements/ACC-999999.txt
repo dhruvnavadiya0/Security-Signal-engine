@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-999999
+Type: Operations
+Branch: HQ
+Opening balance: 15000000.00
+This is fake training data only.

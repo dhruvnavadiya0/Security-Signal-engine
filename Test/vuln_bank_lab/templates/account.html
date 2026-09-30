@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <p class="eyebrow">Account details</p>
+  <h1>{{ account.account_no }}</h1>
+  <div class="split">
+    <div>
+      <p>Type: {{ account.account_type }}</p>
+      <p>Branch: {{ account.branch }}</p>
+    </div>
+    <div class="account-box">
+      <span>Balance</span>
+      <strong>₹{{ '%.2f'|format(account.balance) }}</strong>
+    </div>
+  </div>
+</section>
+<section class="card">
+  <h2>Transactions</h2>
+  <table>
+    <thead><tr><th>Counterparty</th><th>Amount</th><th>Note</th><th>Time</th></tr></thead>
+    <tbody>
+    {% for tx in transactions %}
+      <tr>
+        <td>{{ tx.counterparty|safe }}</td>
+        <td>₹{{ '%.2f'|format(tx.amount) }}</td>
+        <td>{{ tx.note|safe }}</td>
+        <td>{{ tx.created_at }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

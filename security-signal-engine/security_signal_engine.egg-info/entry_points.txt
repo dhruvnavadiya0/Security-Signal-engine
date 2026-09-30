@@ -1,0 +1,5 @@
+[console_scripts]
+sse = src.cli:main
+sse-benchmark = src.evaluation.benchmark:main
+sse-owasp-import = src.evaluation.owasp:main
+sse-tune = src.evaluation.tuning:main

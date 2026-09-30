@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <p class="eyebrow">Public bulletin</p>
+  <h1>Customer Notice Board</h1>
+  <p class="subtle">This page intentionally renders query params unsafely.</p>
+  <div class="alert">Hello {{ name|safe }}, message: {{ message|safe }}</div>
+  <form method="get" class="form inline" action="/reflect">
+    <label>Name<input type="text" name="name" value="{{ name|safe }}"></label>
+    <label>Message<input type="text" name="message" value="{{ message|safe }}"></label>
+    <button class="btn secondary" type="submit">Update</button>
+  </form>
+</section>
+{% endblock %}

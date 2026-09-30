@@ -1,0 +1,30 @@
+scanners_enabled:
+  - semgrep
+
+# Precision-Optimized Profile
+# Target: Max Precision >= 0.90 (Zero/Low Noise for blocking CI/CD pipelines)
+semgrep:
+  config: "p/python"
+  extra_configs:
+    - "config/custom_python_security.yml"
+  timeout: 120
+  rule_allowlist:
+    - python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1
+    - python.lang.security.insecure-hash-algorithms-md5.insecure-hash-algorithm-md5
+    - python.lang.security.insecure-hash-function.insecure-hash-function
+    - python.flask.security.injection.subprocess-injection.subprocess-injection
+    - python.flask.security.injection.tainted-sql-string.tainted-sql-string
+    - fallback-weak_randomness
+    - fallback-insecure_crypto
+    - sse.python.crypto.weak-randomness
+
+scoring:
+  critical_threshold: 0.80
+  high_threshold: 0.65
+  medium_threshold: 0.50
+
+llm:
+  enabled: false
+
+fp_filter:
+  enabled: true

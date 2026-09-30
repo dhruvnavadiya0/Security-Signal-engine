@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <p class="eyebrow">Admin control center</p>
+  <h1>Operations Console</h1>
+  <div class="stat-grid compact">
+    <div class="stat"><span>Users</span><strong>{{ summary.users }}</strong></div>
+    <div class="stat"><span>Accounts</span><strong>{{ summary.accounts }}</strong></div>
+    <div class="stat"><span>Tickets</span><strong>{{ summary.tickets }}</strong></div>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="card">
+    <h2>Execute command</h2>
+    <p class="subtle">This endpoint intentionally passes user input to a shell command.</p>
+    <form method="get" action="/admin/console" class="form">
+      <input type="hidden" name="debug" value="1">
+      <label>cmd<input name="cmd" value="ledger-rebuild"></label>
+      <button class="btn primary" type="submit">Run</button>
+    </form>
+    <pre class="console">{{ command_output|safe }}</pre>
+  </div>
+  <div class="card">
+    <h2>Debug dump</h2>
+    <pre class="console">{{ config_dump|tojson(indent=2) }}</pre>
+  </div>
+</section>
+{% endblock %}

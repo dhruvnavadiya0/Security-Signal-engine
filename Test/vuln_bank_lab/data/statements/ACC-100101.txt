@@ -1,0 +1,6 @@
+BANK LAB STATEMENT
+Account: ACC-100101
+Type: Savings
+Branch: Pune Central
+Opening balance: 56420.88
+This is fake training data only.

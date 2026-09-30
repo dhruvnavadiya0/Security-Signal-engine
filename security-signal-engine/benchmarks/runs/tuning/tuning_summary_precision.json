@@ -1,0 +1,63 @@
+{
+  "profile_tested": "precision",
+  "total_cases": 1230,
+  "total_vulnerabilities": 452,
+  "true_positives": 151,
+  "false_positives": 0,
+  "false_negatives": 301,
+  "precision": 1.0,
+  "recall": 0.3341,
+  "f1_score": 0.5008,
+  "pr_auc": 0.3341,
+  "optimal_operating_points": {
+    "max_f1": {
+      "threshold": 0.0,
+      "precision": 1.0,
+      "recall": 0.3341,
+      "f1": 0.5008
+    },
+    "precision_priority": {
+      "threshold": 0.0,
+      "precision": 1.0,
+      "recall": 0.3341,
+      "f1": 0.5008
+    },
+    "recall_priority": {
+      "threshold": 0.0,
+      "true_positive": 151,
+      "false_positive": 0,
+      "false_negative": 301,
+      "total_predicted": 151,
+      "precision": 1.0,
+      "recall": 0.3341,
+      "f1": 0.5008
+    }
+  },
+  "top_performing_rules": [
+    {
+      "rule_id": "fallback-weak_randomness",
+      "vuln_type": "WEAK_RANDOMNESS",
+      "cwe_id": "CWE-330",
+      "true_positive": 80,
+      "false_positive": 0,
+      "total": 80,
+      "precision": 1.0,
+      "fp_share": 0.0
+    },
+    {
+      "rule_id": "fallback-insecure_crypto",
+      "vuln_type": "INSECURE_CRYPTO",
+      "cwe_id": "CWE-327",
+      "true_positive": 71,
+      "false_positive": 0,
+      "total": 71,
+      "precision": 1.0,
+      "fp_share": 0.0
+    }
+  ],
+  "artifacts": {
+    "engine_report": "benchmarks\\runs\\tuning\\engine-precision.json",
+    "observed": "benchmarks\\runs\\tuning\\observed-precision.json",
+    "evaluation": "benchmarks\\runs\\tuning\\evaluation-precision.json"
+  }
+}

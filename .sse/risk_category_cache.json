@@ -1,0 +1,14 @@
+{
+  "CLICKJACKING|header-missing-x-frame-options|CWE-1021|127.0.0.1:5000": "LOW",
+  "INFORMATION_DISCLOSURE|sensitive-path-robots.txt|CWE-200|robots.txt": "MEDIUM",
+  "INSECURE_TRANSPORT||CWE-319|127.0.0.1:5000": "HIGH",
+  "RECONNAISSANCE_SURFACE|recon-page-surface|CWE-200|127.0.0.1:5000": "LOW",
+  "RECONNAISSANCE_SURFACE|recon-page-surface|CWE-200|ankergames.net": "LOW",
+  "SQL_INJECTION|sqli-boolean-differential|CWE-89|?category=": "HIGH",
+  "SQL_INJECTION|sqli-boolean-differential|CWE-89|?id=": "HIGH",
+  "SQL_INJECTION|sqli-boolean-differential|CWE-89|?q=": "HIGH",
+  "SQL_INJECTION|sqli-boolean-differential|CWE-89|?search=": "HIGH",
+  "SQL_INJECTION|sqli-boolean-differential|CWE-89|?user=": "HIGH",
+  "SSRF|ssrf-probe|CWE-918|ankergames.net": "HIGH",
+  "XSS|header-csp-unsafe-inline|CWE-79|ankergames.net": "LOW"
+}
